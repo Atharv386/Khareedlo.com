@@ -1,5 +1,4 @@
-// --- Data Setup ---
-// Arrays to store multiple values
+
 var products = [
     {
         id: 1,
@@ -122,15 +121,10 @@ var products = [
     }
 ];
 
-// Flash Deals are now hardcoded in HTML
 
-
-// Global Cart Array
 var cart = [];
 
-// --- Functions ---
 
-// 1. Navigation Functions
 function showHome() {
     document.getElementById('home-view').style.display = 'block';
     document.getElementById('product-view').style.display = 'none';
@@ -168,13 +162,13 @@ function showProductPage() {
     window.scrollTo(0, 0);
 }
 
-// 2. Render Functions
+
 
 function renderFlashDeals() {
     var container = document.getElementById('flash-deals');
     var htmlContent = "";
 
-    // Render first 4 products as Flash Deals
+
     for (var i = 0; i < 4; i++) {
         var p = products[i];
         htmlContent = htmlContent +
@@ -192,11 +186,11 @@ function renderProductGrid() {
     var grid = document.getElementById('product-list');
     var htmlContent = "";
 
-    // Render products starting from index 4 (ID 5) to avoid overlap with Flash Deals
+
     for (var i = 4; i < products.length; i++) {
         var p = products[i];
-        if (p.id === 19) continue; // Skip Hero Product
-        var mrp = Math.floor(p.price * 1.5); // Calculate fake MRP
+        if (p.id === 19) continue;
+        var mrp = Math.floor(p.price * 1.5);
 
         htmlContent = htmlContent +
             '<div class="card" onclick="showProduct(' + p.id + ')">' +
@@ -212,7 +206,7 @@ function renderProductGrid() {
 
 function showProduct(id) {
     var product = null;
-    // Find product by ID
+
     for (var i = 0; i < products.length; i++) {
         if (products[i].id === id) {
             product = products[i];
@@ -246,7 +240,7 @@ function showProduct(id) {
     showProductPage();
 }
 
-// 3. Cart Functions
+
 
 function addToCart(id) {
     var product = null;
@@ -262,7 +256,7 @@ function addToCart(id) {
 }
 
 function removeFromCart(index) {
-    cart.splice(index, 1); // Remove item at specific index
+    cart.splice(index, 1);
     renderCart();
     updateCartCount();
 }
@@ -276,7 +270,7 @@ function renderCart() {
     var container = document.getElementById('cart-items');
     var recGrid = document.getElementById('cart-rec-grid');
 
-    // Render Recommendations (First 3 products)
+
     var recHtml = "";
     for (var i = 0; i < 3; i++) {
         var p = products[i];
@@ -288,7 +282,7 @@ function renderCart() {
     }
     recGrid.innerHTML = recHtml;
 
-    // Render Cart Items
+
     if (cart.length === 0) {
         container.innerHTML = "<p>Cart is empty</p>";
         document.getElementById('subtotal-display').innerText = "₹0.00";
@@ -326,7 +320,7 @@ function login() {
     showHome();
 }
 
-// --- Start App ---
+
 renderProductGrid();
 renderFlashDeals();
 updateCartCount();
